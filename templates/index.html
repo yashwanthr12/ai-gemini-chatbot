@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Gemini Chatbot</title>
+  <style>
+    body { font-family: Arial; margin: 30px; max-width: 900px; }
+    .chat { border: 1px solid #ddd; padding: 16px; border-radius: 8px; }
+    .msg { margin: 10px 0; }
+    .user { font-weight: bold; }
+    .bot { color: #1a4; }
+    input { width: 80%; padding: 10px; }
+    button { padding: 10px 14px; }
+    pre { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>AI Chatbot (Gemini + Memory + Tools)</h2>
+
+  <div class="chat">
+    {% for m in messages %}
+      <div class="msg">
+        <span class="{{ 'user' if m.role == 'user' else 'bot' }}">
+          {{ 'You' if m.role == 'user' else 'Bot' }}:
+        </span>
+        <pre style="display:inline">{{ m.content }}</pre>
+      </div>
+    {% endfor %}
+  </div>
+
+  <form method="POST" style="margin-top: 15px;">
+    <input name="text" placeholder="Ask something..." autofocus />
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
